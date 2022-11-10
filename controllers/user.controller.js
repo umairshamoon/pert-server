@@ -82,7 +82,7 @@ module.exports = {
     try {
       if (joiHelper(validatePet, req.body, res)?.statusCode)
         return
-      // const { id } = jwt.verify(req.query.token, JWT_SECRET)
+      const { id } = jwt.verify(req.query.token, JWT_SECRET)
 
       if (!req?.file)
         return res
