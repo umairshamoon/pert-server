@@ -96,7 +96,7 @@ module.exports = {
         )
       )
       req.body.picture = secure_url
-      req.body.postedBy = req.user.id
+      req.body.postedBy = id
 
       await Pet.create(req.body)
       res.status(201).json({ message: 'Pet added successfully' })
