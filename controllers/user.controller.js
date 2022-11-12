@@ -20,8 +20,10 @@ module.exports = {
   getme: async (req, res) => {
     try {
       const { id } = req.query
-      const user = await User.findById(id).select('-password')
-      if (user)
+      const user = await User.findById(id).select(
+        '-password -_id -__v'
+      )
+      if (!user)
         return res.status(200).json({ message: 'not found' })
       res.status(200).json({ user })
     } catch (error) {
@@ -33,7 +35,7 @@ module.exports = {
       const { password, email } = req.body
       if (joiHelper(validateLogin, req.body, res)?.statusCode)
         return
-
+      console.log(req.body)
       const user = await User.findOne({ email })
 
       if (!user)
@@ -47,14 +49,11 @@ module.exports = {
 
       res.status(200).json({
         message: 'Login successfully',
-        info: {
-          username: user.username,
-          avatar: user.avatar,
-        },
+        user,
         token,
       })
     } catch (error) {
-      res.status(400).json({ message: error.message })
+      res.status(500).json({ message: error.message })
     }
   },
 
