@@ -5,6 +5,7 @@ const user = require('../controllers/user.controller')
 const upload = require('../middleware/multer.middleware')
 
 router.post('/login', user.login)
+router.get('/getme', user.getme)
 router.post('/register', upload.single('profile'), user.register)
 router.post('/sell/pet', upload.single('pet'), user.sellPet)
 

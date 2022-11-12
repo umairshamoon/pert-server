@@ -17,6 +17,17 @@ const bufferConversion = require('../helpers/bufferConversion')
 const cloudinary = require('../helpers/cloudinary')
 
 module.exports = {
+  getme: async (req, res) => {
+    try {
+      const { id } = req.query
+      const user = await User.findById(id).select('-password')
+      if (user)
+        return res.status(200).json({ message: 'not found' })
+      res.status(200).json({ user })
+    } catch (error) {
+      res.status(400).json({ message: error.message })
+    }
+  },
   login: async (req, res) => {
     try {
       const { password, email } = req.body
