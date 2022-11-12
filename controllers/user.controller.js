@@ -35,7 +35,7 @@ module.exports = {
       const { password, email } = req.body
       if (joiHelper(validateLogin, req.body, res)?.statusCode)
         return
-      console.log(req.body)
+
       const user = await User.findOne({ email })
 
       if (!user)
@@ -56,7 +56,6 @@ module.exports = {
       res.status(500).json({ message: error.message })
     }
   },
-
   register: async (req, res) => {
     try {
       const { password, email } = req.body
