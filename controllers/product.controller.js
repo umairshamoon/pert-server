@@ -10,7 +10,7 @@ module.exports = {
     try {
       if (joiHelper(validateProduct, req.body, res)?.statusCode)
         return
-      console.log(req.file)
+
       if (!req?.file)
         return res
           .status(400)

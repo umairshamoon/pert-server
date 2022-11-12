@@ -3,6 +3,8 @@ const adminRoutes = require('../routes/admin.routes')
 const userRoutes = require('../routes/user.routes')
 const petRoutes = require('../routes/pet.routes')
 const productRoutes = require('../routes/product.routes')
+const cartRoutes = require('../routes/cart.routes')
+
 //
 module.exports = function (app, express) {
   app.use(express.json())
@@ -10,6 +12,7 @@ module.exports = function (app, express) {
   app.use('/api/user', userRoutes)
   app.use('/api/pets', petRoutes)
   app.use('/api/products', productRoutes)
+  app.use('/api/cart', cartRoutes)
   app.use((req, res, next) => {
     const error = new Error('INVALID ROUTE')
     error.status = 404

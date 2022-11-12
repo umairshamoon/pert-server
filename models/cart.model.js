@@ -9,4 +9,4 @@ const cartSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'user' },
 })
 
-module.exports = model('pet', cartSchema)
+module.exports = model('cart', cartSchema)
