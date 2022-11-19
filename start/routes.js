@@ -11,7 +11,7 @@ module.exports = function (app, express) {
   app.use('/api/admin', adminRoutes)
   app.use('/api/user', userRoutes)
   app.use('/api/pets', petRoutes)
-  app.use('/api/products', productRoutes)
+  app.use('/api/product', productRoutes)
   app.use('/api/cart', cartRoutes)
   app.use((req, res, next) => {
     const error = new Error('INVALID ROUTE')

@@ -14,9 +14,7 @@ module.exports = {
     try {
       const { password, email } = req.body
 
-      if (joiHelper(validateLogin, req.body, res)?.statusCode)
-        return
-
+      joiHelper(validateLogin, req.body)
       const admin = await Admin.findOne({ email })
 
       if (!admin.isAdmin)
@@ -50,14 +48,8 @@ module.exports = {
       }
 
       //VALIDATE REQUEST BODY
-      if (
-        joiHelper(
-          validateAdmin,
-          { password, username, email },
-          res
-        )?.statusCode
-      )
-        return
+
+      joiHelper(validateAdmin, { password, username, email })
 
       await Admin.create({
         username,

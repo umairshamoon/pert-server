@@ -33,8 +33,7 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { password, email } = req.body
-      if (joiHelper(validateLogin, req.body, res)?.statusCode)
-        return
+      joiHelper(validateLogin, req.body)
 
       const user = await User.findOne({ email })
 
@@ -60,9 +59,7 @@ module.exports = {
     try {
       const { password, email } = req.body
 
-      if (joiHelper(validateUser, req.body, res)?.statusCode)
-        return
-
+      joiHelper(validateUser, req.body)
       if (!req?.file)
         return res
           .status(400)
@@ -89,8 +86,7 @@ module.exports = {
   },
   sellPet: async (req, res) => {
     try {
-      if (joiHelper(validatePet, req.body, res)?.statusCode)
-        return
+      joiHelper(validatePet, req.body)
       const { id } = jwt.verify(req.query.token, JWT_SECRET)
 
       if (!req?.file)

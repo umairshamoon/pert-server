@@ -8,8 +8,7 @@ const cloudinary = require('../helpers/cloudinary')
 module.exports = {
   add: async (req, res) => {
     try {
-      if (joiHelper(validateProduct, req.body, res)?.statusCode)
-        return
+      joiHelper(validateProduct, req.body)
 
       if (!req?.file)
         return res
